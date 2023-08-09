@@ -1,0 +1,44 @@
+{% extends 'mobile/template.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <h3>Moiles:</h3>
+            <hr>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Brand name</th>
+                        <th>Brand nationality</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Color</th>
+                        <th>Screen size</th>
+                        <th>Status</th>
+                        <th>Builder country</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                    {% for mobile in mobiles %}
+                    <tr>
+                        <td>{{mobile.brand_name}}</td>
+                        <td>{{mobile.brand_nationality}}</td>
+                        <td>{{mobile.model}}</td>
+                        <td>{{mobile.price}}</td>
+                        <td>{{mobile.color}}</td>
+                        <td>{{mobile.screen_size}}</td>
+                        <td>{{mobile.status}}</td>
+                        <td>{{mobile.builder_country}}</td>
+                        <td><a class="btn btn-info" href="{% url 'update_mobile' mobile.id %}">Edit/Delete</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
