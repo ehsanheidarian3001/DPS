@@ -18,10 +18,14 @@ class Mobile(models.Model):
     )
 
     brand_id = models.ForeignKey(
-        Brand, on_delete=models.SET_NULL, choices=Brand)
+        Brand, on_delete=models.SET_NULL, null=True)
     model = models.CharField(max_length=100, unique=True)
     price = models.IntegerField(null=True)
     color = models.CharField(max_length=100, null=True)
     screen_size = models.FloatField(null=True)
     status = models.BooleanField(choices=STATUS, null=True)
     builder_country = models.CharField(max_length=100, null=True)
+
+
+    def __str__(self) -> str:
+        return f"{self.model}"
