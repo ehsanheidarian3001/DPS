@@ -1,0 +1,79 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<br /><br />
+<div class="card">
+    <div class="card-header">
+        Filters
+    </div>
+    <div class="card-body">
+        <h5 class="card-title">Select Filter</h5>
+        <p class="card-text">in this section select filter mode:</p>
+        <a href="/reports/?f1=True" class="btn btn-primary">Filter 1</a>
+        <a href="/reports/?f2=True" class="btn btn-primary">Filter 2</a>
+        <a href="/reports/?f3=True" class="btn btn-primary">Filter 3</a>
+        <a href="/reports/" class="btn btn-primary">Show all</a>
+    </div>
+</div>
+
+{% if filter_number == 2 %}
+<form action="{% url 'reports' %}" method="POST" id="form_filter_2">
+    {% csrf_token %}
+    <div class="input-group mb-3">
+        <input type="text" class="form-control" placeholder="Brand name" aria-label="Brand name"
+            aria-describedby="button-addon2" name="brand_name">
+        <button class="btn btn-outline-secondary" type="submit">Search</button>
+    </div>
+
+</form>
+
+{% endif %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h3>Mobiles : {{ brand_name }}</h3>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Brand name</th>
+                        <th>Brand nationality</th>
+                        <th>Model</th>
+                        <th>Price</th>
+                        <th>Color</th>
+                        <th>Screen size</th>
+                        <th>Status</th>
+                        <th>Builder country</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                    {% for mobile in mobiles %}
+                    <tr>
+
+                        <td>{{mobile.brand_id.name}}</td>
+                        <td>{{mobile.brand_id.nationality}}</td>
+                        <td>{{mobile.model}}</td>
+                        <td>{{mobile.price}}</td>
+                        <td>{{mobile.color}}</td>
+                        <td>{{mobile.screen_size}}</td>
+                        {% if mobile.status %}
+                        <td>
+                            <p>✅</p>
+                        </td>
+                        {% else %}
+                        <td>
+                            <p>❌</p>
+                        </td>
+                        {% endif %}
+                        <td>{{mobile.builder_country}}</td>
+                        <td><a class="btn btn-info" href="{% url 'update_mobile' mobile.id %}">Edit/Delete</a></td>
+
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -21,5 +21,6 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_page, name="home"),
-    path('update_mobile/<str:id>', views.update_mobile, name="update_mobile"),
+    path('update_mobile/<int:id>', views.update_mobile, name="update_mobile"),
+    path('reports/', views.reports_page, name="reports"),
 ]
