@@ -16,13 +16,13 @@
                     <tr>
                         <th>Brand name</th>
                         <th>Brand nationality</th>
-                        <th>Edit/Delete</th>
+                        <th>Edit</th>
                     </tr>
                     {% for brand in brands %}
                     <tr>
                         <td>{{brand.name}}</td>
                         <td>{{brand.nationality}}</td>
-                        <td><a class="btn btn-info" href="{% url 'edit_brand' brand.id %}">Edit/Delete</a></td>
+                        <td><a class="btn btn-info" href="{% url 'edit_brand' brand.id %}">Edit</a></td>
                     </tr>
                     {% endfor %}
                 </table>
