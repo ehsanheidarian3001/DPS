@@ -1,38 +1,16 @@
 {% extends 'template.html' %}
 
 {% block content %}
-<br /><br />
-<div class="card">
-    <div class="card-header">
-        Filters
-    </div>
-    <div class="card-body">
-        <h5 class="card-title">Select Filter</h5>
-        <p class="card-text">in this section select filter mode:</p>
-        <a href="/reports/?f1=True" class="btn btn-primary">Filter 1</a>
-        <a href="/reports/?f2=True" class="btn btn-primary">Filter 2</a>
-        <a href="/reports/?f3=True" class="btn btn-primary">Filter 3</a>
-        <a href="/reports/" class="btn btn-primary">Show all</a>
-    </div>
-</div>
-
-{% if filter_number == 2 %}
-<form action="{% url 'reports' %}" method="POST" id="form_filter_2">
-    {% csrf_token %}
-    <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Brand name" aria-label="Brand name"
-            aria-describedby="button-addon2" name="brand_name">
-        <button class="btn btn-outline-secondary" type="submit">Search</button>
-    </div>
-
-</form>
-
-{% endif %}
-<br>
+<br/>
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <h3>Mobiles : {{ brand_name }}</h3>
+            <h3>Mobiles :</h3>
+            {% if extra_data %}
+                <div class="alert alert-primary" role="alert">
+                    Mobile Edited...
+                </div>
+            {% endif %}
             <div class="card card-body">
                 <table class="table table-sm">
                     <tr>

@@ -1,0 +1,35 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<br />
+<div class="container">
+    <div class="row">
+        <div class="col-md">
+            <h3>Brands :</h3>
+            {% if extra_data %}
+                <div class="alert alert-primary" role="alert">
+                    Brand Edited
+                </div>
+            {% endif %}
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Brand name</th>
+                        <th>Brand nationality</th>
+                        <th>Edit/Delete</th>
+                    </tr>
+                    {% for brand in brands %}
+                    <tr>
+                        <td>{{brand.name}}</td>
+                        <td>{{brand.nationality}}</td>
+                        <td><a class="btn btn-info" href="{% url 'edit_brand' brand.id %}">Edit/Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -21,6 +21,12 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.main_page, name="home"),
-    path('update_mobile/<int:id>', views.update_mobile, name="update_mobile"),
+    path('mobile/add/', views.add_mobile, name="add_mobile"),
+    path('brand/add/', views.add_brand, name="add_brand"),
+    path('mobile/<int:id>', views.edit_mobile, name="edit_mobile"),
+    path('brand/<int:id>', views.edit_brand, name="edit_brand"),
+    path('mobiles/', views.show_mobiles, name="show_mobiles"),
+    path('brands/', views.show_brands, name="show_brands"),
     path('reports/', views.reports_page, name="reports"),
+    path('forms/', views.forms_page, name="forms"),
 ]

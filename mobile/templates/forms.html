@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+
+{% block content %}
+
+<div>
+    <div>
+        <br/>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Select Form</h5>
+                <p class="card-text">in this section select Forms:</p>
+                <a href="{% url 'add_mobile' %}" class="btn btn-primary">Add Mobile</a>
+                <a href="{% url 'add_brand' %}" class="btn btn-primary">Add Brand</a>
+                <hr>
+                <a href="{% url 'show_mobiles' %}" class="btn btn-primary">Show Mobiles</a>
+                <a href="{% url 'show_brands' %}" class="btn btn-primary">Show Brands</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

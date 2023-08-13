@@ -1,0 +1,24 @@
+{% extends 'template.html' %}
+
+{% block content %}
+<br/>
+<div>
+    <div>
+        <div class="card">
+            <div class="card-body">
+                {% if submitted %}
+                <h2 style='color:green'>Submitted Successfully!</h2><br />
+                {% else %}
+                <form action="" method="POST">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <input type="submit" name="submit" value="Edit" title="Edit brand">
+                </form>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

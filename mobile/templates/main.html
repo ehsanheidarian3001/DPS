@@ -1,6 +1,7 @@
 {% extends 'template.html' %}
 
 {% block content %}
+<br>
 
 <div class="container">
     <div class="row">
@@ -9,25 +10,14 @@
             <div class="card card-body">
                 <table class="table table-sm">
                     <tr>
-                        <th>Brand name</th>
-                        <th>Brand nationality</th>
                         <th>Model</th>
                         <th>Price</th>
-                        <th>Color</th>
-                        <th>Screen size</th>
                         <th>Status</th>
-                        <th>Builder country</th>
-                        <th>Edit/Delete</th>
                     </tr>
                     {% for mobile in mobiles %}
                     <tr>
-
-                        <td>{{mobile.brand_id.name}}</td>
-                        <td>{{mobile.brand_id.nationality}}</td>
                         <td>{{mobile.model}}</td>
                         <td>{{mobile.price}}</td>
-                        <td>{{mobile.color}}</td>
-                        <td>{{mobile.screen_size}}</td>
                         {% if mobile.status %}
                         <td>
                             <p>✅</p>
@@ -37,9 +27,24 @@
                             <p>❌</p>
                         </td>
                         {% endif %}
-                        <td>{{mobile.builder_country}}</td>
-                        <td><a class="btn btn-info" href="{% url 'update_mobile' mobile.id %}">Edit/Delete</a></td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
+        </div>
+        <div class="col-md">
+            <h3>Brands :</h3>
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Brand name</th>
+                        <th>Brand nationality</th>
+                    </tr>
+                    {% for brand in brands %}
+                    <tr>
+                        <td>{{brand.name}}</td>
+                        <td>{{brand.nationality}}</td>
                     </tr>
                     {% endfor %}
                 </table>
@@ -48,5 +53,9 @@
         </div>
     </div>
 </div>
+
+<hr>
+<h5>This project has been designed and developed upon the request of <a href="https://didepardaz.ir/">Dideh Pardaz
+        Saba</a></h5>
 
 {% endblock %}
