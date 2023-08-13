@@ -5,7 +5,9 @@
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <h3>Mobiles :</h3>
+            <h3>Mobile <div class="btn-group" style="float: right;">
+                <a class="btn btn-success" href="{% url 'add_mobile' %}">+</a>
+              </div></h3>
             {% if extra_data %}
                 <div class="alert alert-primary" role="alert">
                     Mobile Edited...
@@ -23,6 +25,7 @@
                         <th>Status</th>
                         <th>Builder country</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     {% for mobile in mobiles %}
                     <tr>
@@ -44,6 +47,7 @@
                         {% endif %}
                         <td>{{mobile.builder_country}}</td>
                         <td><a class="btn btn-info" href="{% url 'edit_mobile' mobile.id %}">Edit</a></td>
+                        <td><a class="btn btn-danger" href="{% url 'delete_mobile' mobile.id %}">Delete</a></td>
 
                     </tr>
                     {% endfor %}

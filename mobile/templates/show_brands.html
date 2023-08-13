@@ -5,24 +5,33 @@
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <h3>Brands :</h3>
-            {% if extra_data %}
+            
+            <h3>Brands <div class="btn-group" style="float: right;">
+                <a class="btn btn-success" href="{% url 'add_brand' %}">+</a>
+              </div></h3>
+
+
+                {% if extra_data %}
                 <div class="alert alert-primary" role="alert">
                     Brand Edited
                 </div>
-            {% endif %}
+                {% endif %}
+                
+            
             <div class="card card-body">
                 <table class="table table-sm">
                     <tr>
                         <th>Brand name</th>
                         <th>Brand nationality</th>
                         <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     {% for brand in brands %}
                     <tr>
                         <td>{{brand.name}}</td>
                         <td>{{brand.nationality}}</td>
                         <td><a class="btn btn-info" href="{% url 'edit_brand' brand.id %}">Edit</a></td>
+                        <td><a class="btn btn-danger" href="{% url 'delete_brand' brand.id %}">Delete</a></td>
                     </tr>
                     {% endfor %}
                 </table>

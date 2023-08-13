@@ -44,7 +44,8 @@
                         <th>Screen size</th>
                         <th>Status</th>
                         <th>Builder country</th>
-                        <th>Edit/Delete</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
                     </tr>
                     {% for mobile in mobiles %}
                     <tr>
@@ -65,7 +66,8 @@
                         </td>
                         {% endif %}
                         <td>{{mobile.builder_country}}</td>
-                        <td><a class="btn btn-info" href="{% url 'edit_mobile' mobile.id %}">Edit/Delete</a></td>
+                        <td><a class="btn btn-info" href="{% url 'edit_mobile' mobile.id %}">Edit</a></td>
+                        <td><a class="btn btn-danger" href="{% url 'delete_mobile' mobile.id %}">Delete</a></td>
 
                     </tr>
                     {% endfor %}

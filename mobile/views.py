@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.db.models import F
 from .models import Mobile, Brand
-from .forms import MobileForm,BrandForm
+from .forms import MobileForm, BrandForm
 
 # Create your views here.
 
@@ -9,12 +9,21 @@ from .forms import MobileForm,BrandForm
 def main_page(request):
     mobiles = Mobile.objects.all()
     brands = Brand.objects.all()
+    count_not_available = len(Mobile.objects.filter(status=False))
+    total_mobiles = len(mobiles)
+    total_brands = len(brands)
+    if len(mobiles) > 5:
+        mobiles = mobiles[:5]
 
     context = {
         "mobiles": mobiles,
         "brands": brands,
+        "count_not_available": count_not_available,
+        "total_mobiles": total_mobiles,
+        "total_brands": total_brands,
     }
     return render(request, 'main.html', context)
+
 
 def show_mobiles(request):
     mobiles = Mobile.objects.all()
@@ -27,6 +36,7 @@ def show_mobiles(request):
     }
     return render(request, 'show_mobiles.html', context)
 
+
 def show_brands(request):
     brands = Brand.objects.all()
     extra_data = None
@@ -38,9 +48,11 @@ def show_brands(request):
     }
     return render(request, 'show_brands.html', context)
 
+
 def forms_page(request):
-    
+
     return render(request, 'forms.html')
+
 
 def add_brand(request):
     submitted = False
@@ -49,7 +61,7 @@ def add_brand(request):
         if form.is_valid():
             form.save()
             return redirect('/brand/add?submitted=True')
-        
+
     else:
         form = BrandForm
         if "submitted" in request.GET:
@@ -69,7 +81,7 @@ def add_mobile(request):
         if form.is_valid():
             form.save()
             return redirect('/mobile/add?submitted=True')
-        
+
     else:
         form = MobileForm
         if "submitted" in request.GET:
@@ -80,6 +92,7 @@ def add_mobile(request):
     }
 
     return render(request, "add_mobile_form.html", context)
+
 
 def edit_mobile(request, id):
     mobile = Mobile.objects.get(id=id)
@@ -97,6 +110,7 @@ def edit_mobile(request, id):
     }
 
     return render(request, "edit_mobile_form.html", context)
+
 
 def edit_brand(request, id):
     brand = Brand.objects.get(id=id)
@@ -117,6 +131,35 @@ def edit_brand(request, id):
     return render(request, "edit_brand_form.html", context)
 
 
+def delete_mobile(request, id):
+    mobile = Mobile.objects.get(id=id)
+    if request.method == "POST":
+        mobile.delete()
+        context = {
+            "mobile": mobile,
+            "deleted": True,
+        }
+    else:
+        context = {
+            "mobile": mobile,
+        }
+    return render(request, "delete_mobile_form.html", context)
+
+def delete_brand(request, id):
+    brand = Brand.objects.get(id=id)
+    if request.method == "POST":
+        brand.delete()
+        context = {
+            "brand": brand,
+            "deleted": True,
+        }
+    else:
+        context = {
+            "brand": brand,
+        }
+    return render(request, "delete_brand_form.html", context)
+
+
 def reports_page(request):
     filter_number = 0
     brand_name = ''
@@ -130,11 +173,12 @@ def reports_page(request):
             brand_name = 'Search in brand name'
             filter_number = 2
         elif 'f3' in request.GET:
-            mobiles = Mobile.objects.filter(builder_country=F('brand_id__nationality'))
+            mobiles = Mobile.objects.filter(
+                builder_country=F('brand_id__nationality'))
             brand_name = 'Brand nationality and Builder country are equal'
             filter_number = 3
         else:
-            
+
             mobiles = Mobile.objects.all()
     elif request.method == 'POST':
         brand_name = request.POST['brand_name']

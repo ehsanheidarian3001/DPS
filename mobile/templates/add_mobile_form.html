@@ -8,6 +8,8 @@
             <div class="card-body">
                 {% if submitted %}
                 <h2 style='color:green'>Submitted Successfully!</h2><br />
+                <br/>
+                <a class="btn btn-secondary" href="{% url 'show_mobiles' %}">Show mobiles</a>
                 {% else %}
                 <form action="" method="POST">
                     {% csrf_token %}

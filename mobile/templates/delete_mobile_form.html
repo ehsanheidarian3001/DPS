@@ -6,15 +6,16 @@
     <div>
         <div class="card">
             <div class="card-body">
-                {% if submitted %}
-                <h2 style='color:green'>Editted Successfully!</h2><br />
+                {% if deleted %}
+                <h2 style='color:red'>Deleted Successfully!</h2><br />
                 <br/>
                 <a class="btn btn-secondary" href="{% url 'show_mobiles' %}">Show mobiles</a>
                 {% else %}
                 <form action="" method="POST">
                     {% csrf_token %}
-                    {{form.as_p}}
-                    <input type="submit" name="submit" value="Edit" title="Edit Mobile">
+                    <p>Are you sure to delete {{ mobile.model }} ?</p>
+                    <input class="btn btn-danger" type="submit" name="submit" value="Delete" title="Delete mobile">
+                    <a class="btn btn-primary" href="{% url 'show_mobiles' %}">Cancle</a>
                 </form>
                 {% endif %}
             </div>

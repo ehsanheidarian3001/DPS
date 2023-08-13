@@ -6,8 +6,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md">
-            <h3>Mobiles :</h3>
+            <h3>Mobiles </h3>
             <div class="card card-body">
+                <h6>
+                    <li>Total : {{ total_mobiles }} </li>
+                    <li>Count Not Availble : {{ count_not_available }}</li>
+                </h6>
                 <table class="table table-sm">
                     <tr>
                         <th>Model</th>
@@ -30,12 +34,16 @@
                     </tr>
                     {% endfor %}
                 </table>
+                <a class="btn btn-info" href="{% url 'show_mobiles' %}">Manage Mobiles</a>
             </div>
 
         </div>
         <div class="col-md">
-            <h3>Brands :</h3>
+            <h3>Brands</h3>
             <div class="card card-body">
+                <h6>
+                    <li>Total : {{ total_brands }} </li>
+                </h6>
                 <table class="table table-sm">
                     <tr>
                         <th>Brand name</th>
@@ -48,6 +56,7 @@
                     </tr>
                     {% endfor %}
                 </table>
+                <a class="btn btn-info" href="{% url 'show_brands' %}">Manage Brands</a>
             </div>
 
         </div>
@@ -55,7 +64,8 @@
 </div>
 
 <hr>
-<h5>This project has been designed and developed upon the request of <a href="https://didepardaz.ir/">Dideh Pardaz
-        Saba</a></h5>
+<h5>This project has been designed and developed for <a href="https://didepardaz.ir/">Dideh Pardaz
+        Saba</a></h5><br />
+<h5>Github <a href="https://github.com/ehsanheidarian3001/DPS">link</a> for this project</h5>
 
 {% endblock %}
